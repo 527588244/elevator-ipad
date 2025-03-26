@@ -644,11 +644,10 @@
                             <div class="web-passenger-product-box-text">
                                 <span class="text4">GDMK-20沉香</span><br />
                                 <span class="text5"
-                                    >吊
-                                    顶:钢板喷砂纹白，古销镜围不锈钢，暗藏灯带，LED灯<br />
+                                    >吊顶:钢板喷砂纹白，古销镜围不锈钢，暗藏灯带，LED灯
                                     娇壁:古铜发纹蚀刻不锈钢，清镜，木纹贴膜PVC装饰框
-                                    <br />
-                                    扶 手: 古铜发纹不锈钢，暗藏灯带 </span
+                                    扶 手: 古铜发纹不锈钢，暗藏灯带 
+                                    地 板:大理石+铜色</span
                                 ><br />
                                 <span class="text5">地 板:大理石+铜色</span>
                                 <div
@@ -663,29 +662,24 @@
                             </div>
                         </div>
                     </div>
-                    <!-- 电梯21 -->
-                    <div class="web-passenger-product">
+                    <div v-for="(list, index) in elist" :key="index" class="web-passenger-product">
                         <div class="web-passenger-product-box">
                             <div class="web-passenger-product-box-img">
                                 <img
-                                    src="@/assets/images/elevator_images/image21.png"
+                                    :src="list.imgUrl"
                                     alt=""
                                     style="width: 100%; height: 100%"
                                 />
                             </div>
-                            <div class="web-passenger-product-box-text">
-                                <span class="text4">GDMK-21|朱樱</span><br />
-                                <span class="text5"
-                                    >吊
-                                    顶:玫瑰金镜面不锈钢，亚克力透光板，LED灯<br />
-                                    娇壁:玫瑰金镜面不锈钢，亚克力透光板，LED灯 </span
-                                ><br />
-                                <span class="text5">地 板:PVC(大理石可选)</span>
-                                <div
-                                    class="web-passenger-product-box-text-bottom"
-                                >
+                            <div  class="web-passenger-product-box-text">
+                                <span class="text4">{{list.name}}</span>
+                                <span class="text5">
+                                   {{ list.description }}
+                                    </span>
+                                <!-- <span class="text5">地 板:PVC(大理石可选)</span> -->
+                                <div class="web-passenger-product-box-text-bottom">
                                     <a
-                                        href="http://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NTIwNTc="
+                                        :href="list.link"
                                         class="button-link"
                                         >720°展示</a
                                     >
@@ -700,7 +694,17 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 export default {
+    setup(){
+        const elist = ref([
+            {imgUrl:'/images/elevator_images/image20.png',name:'GDMK-21|朱樱',description:'吊顶: 玫瑰金镜面不锈钢，亚克力透光板，LED灯\n墙壁: 玫瑰金镜面不锈钢，亚克力透光板，LED灯\n地板: PVC (大理石可选)',link:'http://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NTIwNTc=' },
+            {imgUrl:'/images/elevator_images/image21.png',name:'GDMK-20沉香',description:'吊顶:钢板喷砂纹白，古销镜围不锈钢，暗藏灯带，LED灯\n娇壁:古铜发纹蚀刻不锈钢，清镜，木纹贴膜PVC装饰框\n扶 手: 古铜发纹不锈钢，暗藏灯带 \n地 板:大理石+铜色',link:'http://my.3vfang.com/p/share/content.php?m=a3I4MDM5LWl0ZW09NTE1ODk=' }
+        ]);
+
+        return {elist};
+    },
     data() {
         return {};
     },
@@ -1017,6 +1021,11 @@ html {
     line-height: 2.1875rem;
     letter-spacing: 0rem;
     text-align: left;
+
+    display: block; /* 让每个 span 变成独立块，自动换行 */
+    white-space: pre-line; /* 兼容换行符 (\n) */
+    word-wrap: break-word; /* 处理长单词换行 */
+    line-height: 1.5; /* 调整行距 */
 }
 .text6 {
     color: rgba(0, 43, 125, 0.85);
